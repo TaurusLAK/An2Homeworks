@@ -10,7 +10,17 @@
   <h3>Equivalents</h3>  
   <ul>
     <li *ngFor="let equivalent of equivalents; let i = index">
-      {{i}} : {{equivalent}}
+      {{i}} : {{equivalent}} <button (click)="onAdd(equivalent)">Add to cart</button>
     </li>
   </ul>
+</div>
+
+<div>
+  <div *ngIf="currentCart.entries.length">
+    <h3>Cart entries</h3>
+    <li *ngFor="let entry of currentCart.entries; let i = index">
+      {{i + 1}} : {{entry}}
+    </li>
+  </div>
+  <button (click)="onBuy($event)">Buy</button>
 </div>

@@ -12,15 +12,34 @@ export class AppComponent {
   category: Category = Category.ELECTRONIC;
   isAvailable: boolean = true;
 
+  currentCart: Cart = new Cart();
+
   equivalents: Array<string> = [
       "Lorem ipsum dolor #1",
       "Lorem ipsum dolor #2",
       "Lorem ipsum dolor #3",
       "Lorem ipsum dolor #4",
       "Lorem ipsum dolor #5"
-    ]
+    ];
+
+  onBuy(event: Event) {
+    console.log("OnBuy: " + event);      
+  }
+
+  onAdd(productId: string) {    
+    this.currentCart.add(productId);
+  }
+
 }
 
 enum Category {
   ELECTRONIC, MISCELLANEOUS
+}
+
+class Cart {
+  public entries: Array<string> = []
+
+  add(productName: string){
+    this.entries.push(productName);
+  }
 }
