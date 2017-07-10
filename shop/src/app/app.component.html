@@ -1,16 +1,16 @@
 <div>
-  <h3>Name</h3>{{name}}  
-  <h3>Description</h3>{{description}}
-  <h3>Price</h3>{{price}}
-  <h3>Category</h3>{{category}}
-  <h3>isAvailable</h3>{{isAvailable}}
-</div>
-
-<div>
-  <h3>Equivalents</h3>  
+  <h3>Products</h3>  
   <ul>
-    <li *ngFor="let equivalent of equivalents; let i = index">
-      {{i}} : {{equivalent}} <button (click)="onAdd(equivalent)">Add to cart</button>
+    <li *ngFor="let product of products; let i = index">
+      <h4>{{i}} :</h4>
+      <div>
+        <b>Name: </b>{{product.name}}<br>
+        <b>Description: </b>{{product.description}}<br>
+        <b>Price: </b>{{product.price}}<br>
+        <b>Category: </b>{{product.category}}<br>
+        <b>isAvailable: </b>{{product.isAvailable}}<br>
+      </div>
+      <button (click)="onAdd(product)">Add to cart</button>
     </li>
   </ul>
 </div>
@@ -19,8 +19,8 @@
   <div *ngIf="currentCart.entries.length">
     <h3>Cart entries</h3>
     <li *ngFor="let entry of currentCart.entries; let i = index">
-      {{i + 1}} : {{entry}}
+      {{i + 1}} : {{entry.name}} (${{entry.price}})
     </li>
   </div>
-  <button (click)="onBuy($event)">Buy</button>
+  <button [disabled]="!currentCart.entries.length" (click)="onBuy($event)">Buy</button>
 </div>

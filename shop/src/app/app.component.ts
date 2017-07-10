@@ -1,45 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { ProductService } from './service/product.service';
+
+import { Product } from './domain/product';
+import { Cart } from './domain/cart';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  name: string = "Lorem ipsum dolor sit amet.";
-  description: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed aliquam metus. Suspendisse feugiat diam nisi, vitae pretium magna mattis vel. Nam laoreet ante eu magna convallis, euismod rhoncus est ornare. Morbi vestibulum, sem eget commodo elementum, tortor mauris feugiat lectus, ullamcorper pulvinar erat odio sit amet arcu. Integer eu scelerisque arcu. Donec suscipit arcu nunc, in egestas sapien finibus in. Praesent nisl tellus, fermentum et lorem non, consequat sodales ligula. Nunc porttitor aliquet ligula. In porta pulvinar erat. Integer venenatis hendrerit massa vitae auctor. Sed vel dui sollicitudin, accumsan massa ut, lacinia turpis. Pellentesque vel maximus dolor";
-  price: number = 100;
-  category: Category = Category.ELECTRONIC;
-  isAvailable: boolean = true;
+export class AppComponent implements OnInit {
+  products: Array<Product>;
+  currentCart: Cart;
 
-  currentCart: Cart = new Cart();
+  constructor(
+    private productService: ProductService
+  ){}
 
-  equivalents: Array<string> = [
-      "Lorem ipsum dolor #1",
-      "Lorem ipsum dolor #2",
-      "Lorem ipsum dolor #3",
-      "Lorem ipsum dolor #4",
-      "Lorem ipsum dolor #5"
-    ];
-
+  ngOnInit(){
+    this.currentCart = new Cart();
+    this.products = this.productService.getProducts();
+  }
+  
   onBuy(event: Event) {
     console.log("OnBuy: " + event);      
   }
 
-  onAdd(productId: string) {    
-    this.currentCart.add(productId);
-  }
-
-}
-
-enum Category {
-  ELECTRONIC, MISCELLANEOUS
-}
-
-class Cart {
-  public entries: Array<string> = []
-
-  add(productName: string){
-    this.entries.push(productName);
+  onAdd(product: Product) {    
+    this.currentCart.add(product);
   }
 }
