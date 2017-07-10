@@ -11,6 +11,14 @@ export class AppComponent {
   price: number = 100;
   category: Category = Category.ELECTRONIC;
   isAvailable: boolean = true;
+
+  equivalents: Array<string> = [
+      "Lorem ipsum dolor #1",
+      "Lorem ipsum dolor #2",
+      "Lorem ipsum dolor #3",
+      "Lorem ipsum dolor #4",
+      "Lorem ipsum dolor #5"
+    ]
 }
 
 enum Category {

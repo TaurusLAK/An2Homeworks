@@ -6,3 +6,11 @@
   <h3>isAvailable</h3>{{isAvailable}}
 </div>
 
+<div>
+  <h3>Equivalents</h3>  
+  <ul>
+    <li *ngFor="let equivalent of equivalents; let i = index">
+      {{i}} : {{equivalent}}
+    </li>
+  </ul>
+</div>
