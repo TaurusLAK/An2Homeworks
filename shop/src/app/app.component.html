@@ -15,12 +15,4 @@
   </ul>
 </div>
 
-<div>
-  <div *ngIf="currentCart.entries.length">
-    <h3>Cart entries</h3>
-    <li *ngFor="let entry of currentCart.entries; let i = index">
-      {{i + 1}} : {{entry.name}} (${{entry.price}})
-    </li>
-  </div>
-  <button [disabled]="!currentCart.entries.length" (click)="onBuy($event)">Buy</button>
-</div>
+<cart #cart></cart>
