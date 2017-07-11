@@ -10,6 +10,8 @@ import { Product } from '../../domain/product';
 })
 export class CartComponent implements OnInit {  
 
+  captchaSiteKey: string = "6Ld9lCgUAAAAAJiRiMx3cMfUuh7swm5yme_sscV0";
+  isCaptchaValid: boolean = false;
   cart: Cart;
 
   ngOnInit() {
@@ -22,5 +24,13 @@ export class CartComponent implements OnInit {
 
   onBuy(event: Event) {
     console.log("OnBuy: " + event);      
+  }
+
+  handleCorrectCaptcha(captcha: string) { 
+    this.isCaptchaValid = true;
+  }
+
+  handleCaptchaExpired() {    
+    this.isCaptchaValid = false;
   }
 }

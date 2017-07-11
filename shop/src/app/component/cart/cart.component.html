@@ -5,5 +5,6 @@
       {{i + 1}} : {{entry.name}} (${{entry.price}})
     </li>
   </div>
-  <button [disabled]="!cart.entries.length" (click)="onBuy($event)">Buy</button>
+  <button [disabled]="cart.entries.length == 0 || !isCaptchaValid" (click)="onBuy($event)">Buy</button>
+  <re-captcha (captchaExpired)="handleCaptchaExpired($event)" (captchaResponse)="handleCorrectCaptcha($event)" [site_key]="captchaSiteKey" theme="dark"></re-captcha>
 </div>
